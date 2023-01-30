@@ -1,0 +1,182 @@
+C++ STL
+
+3. Sets (used for unique data structure)
+
+Given n elements,find the number of unique elements
+
+--> Important Properties of set:
+    A. The first element in the set will be the smallest element present and
+       as we move up the index the next consecutive number in ascending order 
+       is obtained.
+    B. To access the elements in the set you have to use the iterators.
+
+Syntax:
+//                                      arr[]={2,5,2,1,5}
+set<int>st;
+int n;
+cin>>n;
+for(int n=0;i<n;i++){
+    int x;
+    cin>>x;
+    st.insert(x);               st -> {1,2,5}
+}
+cout<< st.size() << endl;         //the output will be the number of unique elements present
+
+    I. insert(x) 
+    
+    This is similar to push_back() function.
+
+    II. *st.begin()
+
+    Time Complexity - (log n)
+    This will fetch the first element of the set. For accesing other elements:
+        *st.begin()+n;
+        -> n =1,2,3,4.....
+
+    III. st.erase(iterator)
+
+    This is used to delete an element present in the set.
+    Example : st.erase(st.begin());                  st -> {2,5}
+              st.erase(st.reversebegin());       
+    To delete multiple elements :
+              st.erase(st.begin(),st.begin()+2);
+              // st.erase(startiterator(),enditerator())
+    To delete a particular element :
+              st.erase(5);
+              // st.erase(key);
+
+    IV. find
+
+    to find a particular iterator in set, 
+    Example :   set<int> st = {1,5,7,8};
+                auto it = st.find(7);   //log n     //it will be an iterator to 7
+                auto it = st.find(9);   //it = st.end();
+
+    V. Emplace 
+
+    same as insert() but faster.
+    st.emplace(7);      //  st.insert(7);
+
+    VI. size
+
+    used to find the size of the set.
+    cout << st.size() <<endl;
+
+    VII. Count 
+
+    how many times an element occured.
+    st.count(2);
+
+    Implementation : 
+        set <int> st;
+        st.insert(5);       // ->{5}
+        st.insert(5);       // ->{5}
+        Method 1 :
+        for(auto it=st.begin;it!=st.end();it++){
+            cout<< *it <<endl;
+        }
+        Method 2:
+        for(auto it: st){
+            cout<< it <<endl;
+        }
+
+        To delete the entire set:
+        st.erase(st.begin(),st.end());      // this makes sure that the entire set is deleted
+
+4. unordered set
+    -> same as ordered set but
+
+    Syntax:
+    unordered_set<int> st;
+    st.insert(2);
+    st.insert(3);
+    st.insert(1);
+
+    //--> average time Complexity is O(n)
+    //--> the worst case is linear in nature i.e. O(set_size)
+
+5. multi set
+
+    multiset<int>ms;        //log N in size 
+
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(2);
+    ms.insert(2);
+    ms.insert(3);
+    // st -> {1,1,2,2,3}
+
+    ms.erase(2);    //all the instances will be deleted
+
+    auto it= ms.find(2);    //returns an iterator pointing to the first element of 2
+    ms.clear();                                //deletes the entire set(method 1)
+    ms.erase(ms.begin(),ms.end());             //deletes the entire set(method 2)
+
+--> Key value Concept <--
+when you want to store a value corresponding to a key through which it can be accessed
+
+6. Map Container (similar to dictionary)
+TC: log N
+
+declaration:
+    map<string,int> mpp;                        //map<key,value> name;
+    map["prashant"]= 1;
+    map["priyanshu"]= 2;
+    map["aditya"]= 3;
+    map["abhishek"]= 4;
+        --> map maintains a linearly increasing order i.e. first abhishek will be stored then
+            aditya and so on!(based on key)
+
+    I. store
+    mpp.emplace("raj",45);
+    
+    II. To delete
+    mpp.erase(mpp.begin());                     //erase the first element
+    mpp.erase("raj");                           //erase a key
+    mpp.clear();                                //clear the entire map
+    mpp.erase(mpp.begin(),mpp.begin()+2);       //erase the first couple of elements
+
+    III. find
+    auto it= mpp.find("raj");                   //finds the first occurance of the key
+
+    IV. To check weather the map is Empty or not
+    if (mpp.empty()){                           //returns value in boolean
+        cout<<"Yes, it is empty"<<endl;
+    }
+
+    --> mpp.count("raj");           //always returns 1 as it stores only 1 instance of raj
+
+Printing Map:
+    for(auto it : mpp){                             //method 1
+        cout<<it.first<<" "<<it.second<<endl;
+    }
+
+    for(auto it = mpp.begin();it!=mpp.end();it++){
+        cout<<it->first<<" "<<it->second<<endl;
+    }
+
+7. Unordered Map
+declaration:
+unordered_map<int,int> mpp;
+
+
+//similar to ordered map except :
+//O(1) in almost all cases 
+//O(n) in the worst cases, where n is the container size
+//doesn't stores in any order!
+
+8. Multimap
+declaration:
+multimap<string,int> mpp;
+mpp["raj"]=2;
+mpp[]
+
+9. Pair Class
+declaration:
+pair<int,int> pr={1,2};
+pair<pair<int,int>,int> pr={{1,2},2};       //nested Pair
+cout<<pr.first.second<<endl;                //prints the second element of first pair
+pair<pair<int,int>,pair<int,int>> pr = {{1,2},{2,4}};
+cout<<pr.first.second<<endl;    --> 2 
+cout<<pr.second.second<<endl;    --> 4
+

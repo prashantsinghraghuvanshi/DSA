@@ -1,0 +1,78 @@
+C++ STL
+
+1. Arrays 
+
+2. Vectors
+
+2.1 : 1-D Vectors
+Syntax: 
+    vector<int>arr;             // -> {}
+    cout<<arr.size()<<endl;     // -> print 0
+
+    I. push_back()        
+    
+    arr.push_back(0);           // -> {0}
+    arr.push_back(2);           // -> {0,2}
+    cout<<arr.size()<<endl;     // -> print 2 ->dynamic increase in size 
+    //segmentation fault if push_back 10^7 times
+
+    II. pop_back()
+    
+    arr.pop_back();             //{0}
+    cout<<arr.size()<<endl;     //print 1
+
+    III. vec.clear();
+    
+    // -> erase all the elements at once 
+
+    IV. Initialise the size of a Vectors
+    
+    vector<int> vec(4,0);       // -> {0,0,0,0}
+
+    to create a copy->
+    1.    vector<int> vec2(vec2.begin(),vec2.end()); // -> [)
+    2.    vector<int> vec2(vec);
+
+    vector<int> pra;
+    pra.push_back(0);
+    pra.push_back(1);
+    pra.push_back(2);
+    pra.push_back(3);           // -> {0,1,2,3}
+        //-> if i want to copy this vector till 1
+    vector<int> pra2(pra.begin(),pra.begin()+2);    //-> {0,1}
+
+    V. emplace_back()
+
+    vector<int> pra;
+    pra.emplace_back(0);        // alternative of -> pra.push_back(0);
+        //-> emplace_back takes less time than push_back()
+    
+
+2.2 : 2-D Vectors
+syntax:
+    vector<vector<int>> vec;
+
+To print a 2D vector:
+    for(auto vctr: vec){
+        for(auto it: vctr){
+            cout<< it << " ";
+        }
+        cout << endl;
+    }
+
+To define a parameterised vector:
+    vector<vector<int>> vec(10, vector<int> (20,0));
+
+To define an array of vector:
+    vector<int> arr[4];
+
+    //here the vectors are placed at each index of the Array
+    //so we can take as much element as we want on each index
+    //but the number of vector will remain constant
+
+
+2.3 : 3-D Vectors
+syntax:
+    vector<vector<vector<int>>> vec(10,vector<vector<int>> vec(20, vector<int> (30,0)));
+
+-> End of 1st lecture <-
