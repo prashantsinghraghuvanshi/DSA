@@ -6,7 +6,7 @@ class solution{
             int k=flag.size(),count=0,j=0;
             for(int i=0;i<=k;i++){
                 j++;
-                if(*flag.begin()+i==1&&(flag.begin()+i==data.begin()+j)){
+                if((*flag.begin()+i==*data.begin()+j)&&(flag.begin()+i==data.begin()+j)){
                     count++;    
                 }
                 if(count==5){
